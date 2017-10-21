@@ -1,14 +1,13 @@
 package cs.bigdata.Tutorial2;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FSDataInputStream;
 
 public class DisplayStation {
 	public static String usaf;
@@ -25,10 +24,14 @@ public class DisplayStation {
 	public static void main(String[] args) throws IOException {
 		String localSrc = "/home/cloudera/Lab2/BigData_Lab2/Data/isd-history.txt";
 		int lines_count = 0;
-		//Open the file
+		//Open the file using Hadoop API
 		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(conf);
-		InputStream in = new BufferedInputStream(new FileInputStream(localSrc));
+		Path path = new Path(localSrc);
+		if (!fs.exists(path)){
+			System.out.println("File " + localSrc + " doesn't exist.");
+		}
+		FSDataInputStream in = fs.open(path);
 		
 		try{
 			InputStreamReader isr = new InputStreamReader(in);
