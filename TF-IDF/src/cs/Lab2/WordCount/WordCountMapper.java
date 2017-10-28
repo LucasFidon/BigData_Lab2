@@ -41,6 +41,9 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 			token = token.replace("\"", "");
 			token = token.replace("?", "");
 			token = token.replace("!", "");
+			token = token.replace("&", "");
+			token = token.replace(":", "");
+			token = token.replace("-", "");
 			if (token.length() > 0){
 				// return key value pair: ["word@docId", 1]
 				word.set(token + "@" + fileName);
