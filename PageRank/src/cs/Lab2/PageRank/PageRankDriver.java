@@ -20,20 +20,37 @@ import org.apache.hadoop.util.Tool;
 //import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.util.ToolRunner;
 
+import cs.Lab2.InitGraph.InitGraphMapper;
+import cs.Lab2.InitGraph.InitGraphReducer;
+
 public class PageRankDriver extends Configured implements Tool{
+	
 	public static void main(String[] args) throws Exception {
 	      System.out.println(Arrays.toString(args));
-	      int res = ToolRunner.run(new Configuration(), new PageRankDriver(), args);
-	      System.exit(res);
+	      int res = 0;
+	      int max_iter = 200;
+	      for (int i = 0; i<max_iter; i++){
+	    	  if (i > 0){
+	    		  String[] args_temp = {"./" + args[1] + (i - 1) + "/part-r-00000", args[1] + i};
+	    		  res = ToolRunner.run(new Configuration(), new PageRankDriver(), args_temp);
+	    	  }
+	    	  else{
+	    		  String[] args_temp = {args[0], args[1] + i};
+	    		  res = ToolRunner.run(new Configuration(), new PageRankDriver(), args_temp);
+	    	  }
+	      }
 	   }
 
 	   @Override
 	   public int run(String[] args) throws Exception {
-	      //System.out.println(Arrays.toString(args));
-	      Job job = new Job(getConf(), "ComputeMean");
+	      // Apply PageRang algo
+	      Job job = new Job(getConf(), "PageRank");
 	      job.setJarByClass(PageRankDriver.class);
-	      job.setOutputKeyClass(Text.class);
-	      job.setOutputValueClass(FloatWritable.class);
+	      job.setMapOutputKeyClass(IntWritable.class);
+	      job.setMapOutputValueClass(Text.class);
+	      
+	      job.setOutputKeyClass(IntWritable.class);
+	      job.setOutputValueClass(Text.class);
 
 	      job.setMapperClass(PageRankMapper.class);
 	      job.setReducerClass(PageRankReducer.class);
@@ -41,12 +58,8 @@ public class PageRankDriver extends Configured implements Tool{
 	      job.setInputFormatClass(TextInputFormat.class);
 	      job.setOutputFormatClass(TextOutputFormat.class);
 	      
-	      for (int i=0; i<args.length-1; i++){
-	    	  FileInputFormat.addInputPath(job, new Path(args[i]));
-	      }
-	      //FileInputFormat.addInputPath(job, new Path(args[0]));
-	      //FileInputFormat.addInputPath(job, new Path(args[1]));
-	      FileOutputFormat.setOutputPath(job, new Path(args[args.length-1]));
+	      FileInputFormat.addInputPath(job, new Path(args[0]));
+	      FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
 	      job.waitForCompletion(true);
 	      

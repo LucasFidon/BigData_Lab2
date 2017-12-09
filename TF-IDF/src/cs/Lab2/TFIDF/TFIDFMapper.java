@@ -19,7 +19,7 @@ public class TFIDFMapper extends Mapper<LongWritable, Text, Text, Text>{
 	private Text info = new Text();
 	
 	/*
-	 * Input text file with line on the form: "word@docID" "wordcount;wordsperdoc"
+	 * Input text file with line of the form: "word@docID" "wordcount;wordsperdoc"
 	 * Output: ["word", "docID;wordcount;wordsperdoc"]
 	 */
 	

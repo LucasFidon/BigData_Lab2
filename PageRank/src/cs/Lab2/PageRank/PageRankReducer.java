@@ -13,17 +13,30 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class PageRankReducer extends Reducer<Text, FloatWritable, Text, FloatWritable>{
+public class PageRankReducer extends Reducer<IntWritable, Text, IntWritable, Text>{
 	@Override
-	public void reduce(Text key, Iterable<FloatWritable> values, Context context)
+	public void reduce(IntWritable key, Iterable<Text> values, Context context)
 			throws IOException, InterruptedException{
-		int sum = 0;
-		int cnt = 0;
-		for(FloatWritable val: values){
-			sum += val.get();
-			cnt += 1;
+		float sum = 0;
+		Node node = new Node(Integer.parseInt(key.toString()));
+		for(Text val: values){
+			String p = val.toString();
+			if (p.contains("nid:")){
+				// instantiate the node from its info
+				Node n =  new Node(p.toString());
+				for (int adj_n: n.adjencyList){
+					node.add_adjacent_node(adj_n);
+				}
+				//node.adjencyList = n.adjencyList;
+				sum += n.pageRank;  // it is 0 except when the current node is a sink
+			}
+			else{ //p is a contribution to the new value for the pageRank of the current node
+				float p_val = Float.parseFloat(p);
+				sum += p_val;
+			}
 		}
-		float mean = sum/cnt;
-		context.write(key, new FloatWritable(mean));
+		// apply damping factor
+		node.pageRank = (float) (0.85*sum + 0.15);
+		context.write(key, new Text(node.toString()));
 	}
 }
