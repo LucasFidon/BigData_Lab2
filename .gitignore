@@ -55,6 +55,3 @@ local.properties
 .scala_dependencies
 .worksheet
 
-PageRank/initGraph
-PageRank/output*
-PageRank/top10ranking*

@@ -1,0 +1,12 @@
+Top 10 ranking according to the pageRank for the file /Data/soc-Epinions1.txt
+(damping factor used: 0,85, number of iterations: 199)
+Rank 1: nodeId=18, PageRank=347.6029
+Rank 2: nodeId=737, PageRank=243.10344
+Rank 3: nodeId=118, PageRank=163.19756
+Rank 4: nodeId=1719, PageRank=161.73041
+Rank 5: nodeId=136, PageRank=155.348
+Rank 6: nodeId=143, PageRank=150.72754
+Rank 7: nodeId=790, PageRank=150.51283
+Rank 8: nodeId=40, PageRank=140.00058
+Rank 9: nodeId=725, PageRank=124.71484
+Rank 10: nodeId=1619, PageRank=121.212975
