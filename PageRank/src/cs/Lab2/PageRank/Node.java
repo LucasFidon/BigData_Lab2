@@ -11,7 +11,6 @@ public class Node {
 	public int nodeId;
 	public float pageRank = 1;
 	//total number of nodes in the graph whose the node belongs to
-	private int numNodes= -1; //used for PageRank
 	// Set of ids of nodes adjacent to the node
 	public HashSet<Integer> adjencyList = new HashSet<Integer>();
 	
@@ -21,17 +20,6 @@ public class Node {
 		this.nodeId = nodeId;
 	}
 	
-	public Node(int nodeId, float pageRank) {
-		this.nodeId = nodeId;
-		this.pageRank = pageRank;
-	}
-	
-	public Node(int nodeId, int numNodes) {
-		this.nodeId = nodeId;
-		// random surfer init PageRank
-		this.pageRank = 1/numNodes;
-		this.numNodes = numNodes;
-	}
 	
 	public Node(String node_str){
 		// get node from string
