@@ -19,4 +19,4 @@ To do that we sorted the couples (borough, age) wrt to age in descending order
 You can run:
 java cs.Lab2.SortBoroughPerAge.SortDriver.java ../Data/arbres.csv BoroughSortedPerHeight_output
 Results can be found in the file BoroughSortedPerHeight_output/part-r-00000
- 
+The oldest tree we found was in the 5th borough of Paris. 
