@@ -2,6 +2,8 @@
 Introduction to MapReduce and Hadood.
 The code was running using Java and Eclipse versions on Ubuntu comming with the cloudera-quickstart-vm-5.12.0-0-virtualbox virtual machine.
 
+The pdf file Answers_Lab2.pdf contains the answer to the questions of the projects.
+
 Folders:
 ========
 Data: contains the data used in the following exercises.
