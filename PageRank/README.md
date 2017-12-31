@@ -7,10 +7,10 @@ Initialization: build the graph from the data
 you can run:
 java cs.Lab2.InitGraph. InitGraphDriver.java ../Data/soc-Epinions1.txt initGraph
 
-Iteration: perform the iterative PageRAnk algorthm following ressources provided in the homework...
+Iteration: perform the iterative PageRank algorithm following ressources provided in the homework.
 You can run:
 java cs.Lab2.PageRank.PageRankDriver.java ./InitGraph/part-r-00000 output_pageRank
-the number of iterations is fixed to 200 (but you can change it by setting the variabl max_iter to a different value if you like)
+the number of iterations is fixed at 200 (but you can change it by setting the variabl max_iter to a different value if you like)
 
 Get top10 ranking according to the PageRank:
 You can run:

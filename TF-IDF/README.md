@@ -1,4 +1,4 @@
-Project: Ranking of words from two texts (defoe-robinson-103 et callwild) with respect to thier TF-IDF value.
+Project: Ranking of words from two texts (defoe-robinson-103 et callwild) with respect to their TF-IDF value.
 author: Lucas Fidon (lucas.fidon@student.ecp.fr)
 
 Following the Hints of the homeword I proceeded in 3 steps + 1 extra step to sort the results wrt TF-IDF values
@@ -21,9 +21,9 @@ Results can be found in output_round3/part-r-00000
 Sort: sort the words wrt to their TF-IDF score (still using MapReduce)
 You can run:
 java cs.Lab2.SortperTFIDF.SortDriver.java output_round3/part-r-00000 rankingTFIDF
-Resuts can be found in rankingTFIDF/part-r-00000
+Results can be found in rankingTFIDF/part-r-00000
 
-In particular the top20 words and their TF-IDF values were:
+In particular, the top20 words and their TF-IDF values were:
 
 buck@callwild	0.006827235
 dogs@callwild	0.002442956
